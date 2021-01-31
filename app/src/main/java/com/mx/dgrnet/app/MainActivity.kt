@@ -1,28 +1,28 @@
 package com.mx.dgrnet.app
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.ImageSwitcher
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.ViewSwitcher
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.*
-import java.io.IOException
 import java.net.URL
 import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var imageSwitcher : ImageSwitcher
+    public final lateinit var imageSwitcher : ImageSwitcher
     var imageList : ArrayList<Drawable> = java.util.ArrayList()
     var imageUrl : ArrayList<URL> = java.util.ArrayList()
+    lateinit var txtEmail : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        inicializarVariables()
         mostrarCarrusel()
     }
 
@@ -53,6 +53,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }, 1.toLong(), DURACION.toLong())
+    }
+
+    fun inicializarVariables() {
+        txtEmail = findViewById(R.id.txtViewEmail)
     }
 
 }

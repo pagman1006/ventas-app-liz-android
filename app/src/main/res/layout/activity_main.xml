@@ -16,6 +16,7 @@
         android:layout_height="wrap_content" >
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -35,21 +36,12 @@
                     android:textColor="#fff"
                     android:text="DGR NET"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-                <View
-                    android:background="#fff"
-                    android:layout_width="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_height="2dp" />
             </LinearLayout>
-
         </LinearLayout>
-
     </Toolbar>
 
     <ImageSwitcher
@@ -59,11 +51,45 @@
         android:layout_height="207dp"
         android:layout_marginTop="5dp"/>
 
-    <ImageView
-        android:id="@+id/imageViewUbiquiti"
+    <TextView
+        android:id="@+id/txtViewEmail"
         android:layout_width="match_parent"
-        android:layout_height="207dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/imageSwitcher"
-        android:layout_marginTop="5dp"/>
+        android:paddingVertical="25dp"
+        android:paddingHorizontal="10dp"
+        android:text="@string/dgrne_cotizaciones"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:background="@color/blue_tenue"
+        android:alpha = ".45"/>
+
+    <TextView
+        android:id="@+id/txtPromocionTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txtViewEmail"
+        android:paddingVertical="20dp"
+        android:paddingHorizontal="10dp"
+        android:text="Aprovecha el envío a domicilio."
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:background="@color/gris_promocion"
+        />
+
+    <TextView
+        android:id="@+id/txtPromocionDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txtPromocionTitulo"
+        android:paddingVertical="20dp"
+        android:paddingHorizontal="10dp"
+        android:text="En DGR Net pensamos en tu salud, es por ello que en la compra de $7,000 o más en productos participantes, tu envío será completamente gratis."
+        android:textColor="@color/txt_promocion"
+        android:textAlignment="center"
+        android:background="@color/gris_promocion"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
