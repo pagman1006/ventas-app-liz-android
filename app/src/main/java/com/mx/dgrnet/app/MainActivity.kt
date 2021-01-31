@@ -2,10 +2,8 @@ package com.mx.dgrnet.app
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageSwitcher
 import android.widget.ImageView
 import android.widget.ViewSwitcher
@@ -25,48 +23,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        cargarImagenes()
-        cargarCarrusel()
+        mostrarCarrusel()
     }
 
-    fun cargarImagenes() {
-        val url : String = "https://www.dgrnet.com.mx/images/banner/"
-        var urlImage = url + "ubiquiti.png"
-        var imageView: ImageView = ImageView(this)
-        imageUrl.add(URL(urlImage))
+    fun mostrarCarrusel() {
+        val galeria = intArrayOf(R.drawable.ubiquiti, R.drawable.logo, R.drawable.hilook,
+                R.drawable.mikro, R.drawable.mimosa, R.drawable.tenda, R.drawable.tplink)
 
-        urlImage = url + "hilook.png"
-        imageUrl.add(URL(urlImage))
-
-        urlImage = url + "logo-banner.png"
-        imageUrl.add(URL(urlImage))
-
-        urlImage = url + "mikro.png"
-        imageUrl.add(URL(urlImage))
-
-        urlImage = url + "mimosa.png"
-        imageUrl.add(URL(urlImage))
-
-        urlImage = url + "tenda.png"
-        imageUrl.add(URL(urlImage))
-
-        urlImage = url + "tplink.png"
-        imageUrl.add(URL(urlImage))
-
-        for ( url in imageUrl ) {
-            var img: Deferred<Bitmap?> = GlobalScope.async {
-                url.toBitmap()
-            }
-
-            GlobalScope.launch(Dispatchers.Main) {
-                // show bitmap on image view when available
-                imageList.add(BitmapDrawable(img.await() as Bitmap))
-                Log.d("Carga de Imagenes",url.toString())
-            }
-        }
-    }
-
-    fun cargarCarrusel() {
         var posicion : Int = 0
         val DURACION : Int = 9000
         var timer : Timer? = null
@@ -84,24 +47,12 @@ class MainActivity : AppCompatActivity() {
         timer.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
                 runOnUiThread {
-                    if ( imageList.size > 0) {
-                        imageSwitcher.setImageDrawable(imageList.get(posicion))
-                        posicion++
-                        if (posicion === imageUrl.size) posicion = 0
-                    }
-
+                    imageSwitcher.setImageResource(galeria[posicion])
+                    posicion++
+                    if (posicion === galeria.size) posicion = 0
                 }
             }
-        }, 5.toLong(), DURACION.toLong())
+        }, 1.toLong(), DURACION.toLong())
     }
 
-}
-
-// extension function to get bitmap from url
-fun URL.toBitmap(): Bitmap?{
-    return try {
-        BitmapFactory.decodeStream(openStream())
-    }catch (e: IOException){
-        null
-    }
 }
