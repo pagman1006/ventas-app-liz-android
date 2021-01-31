@@ -1,6 +1,5 @@
 package com.mx.dgrnet.app
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.ImageSwitcher
 import android.widget.ImageView
@@ -8,15 +7,12 @@ import android.widget.TextView
 import android.widget.ViewSwitcher
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.*
-import java.net.URL
 import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
 
-    public final lateinit var imageSwitcher : ImageSwitcher
-    var imageList : ArrayList<Drawable> = java.util.ArrayList()
-    var imageUrl : ArrayList<URL> = java.util.ArrayList()
+    lateinit var imageSwitcher : ImageSwitcher
     lateinit var txtEmail : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,8 +23,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun mostrarCarrusel() {
-        val galeria = intArrayOf(R.drawable.ubiquiti, R.drawable.logo, R.drawable.hilook,
-                R.drawable.mikro, R.drawable.mimosa, R.drawable.tenda, R.drawable.tplink)
+        val galeria = intArrayOf(R.drawable.ubiquiti,
+                R.drawable.logo_banner,
+                R.drawable.hilook,
+                R.drawable.mikro,
+                R.drawable.mimosa,
+                R.drawable.tenda,
+                R.drawable.tplink)
 
         var posicion : Int = 0
         val DURACION : Int = 9000
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         imageSwitcher = findViewById(R.id.imageSwitcher)
 
         imageSwitcher.setFactory(ViewSwitcher.ViewFactory() {
-            var imgView: ImageView = ImageView(this)
+            val imgView = ImageView(this)
             imgView.scaleType = ImageView.ScaleType.FIT_CENTER
 
             return@ViewFactory imgView
